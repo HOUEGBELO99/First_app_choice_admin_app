@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:premierchoixadmin/components/calcul.dart';
 
 
 /*import 'package:firebase_storage/firebase_storage.dart';
@@ -91,7 +94,7 @@ class _AddProductState extends State<AddProduct> {
                       child: OutlineButton(
                           borderSide: BorderSide(color: grey.withOpacity(0.5), width: 2.5),
                           onPressed: (){
-                            //_selectImage(ImagePicker.pickImage(source: ImageSource.gallery), 1);
+                            _selectImage(ImagePicker.pickImage(source: ImageSource.gallery), 1);
                           },
                           child: _displayChild1()
                       ),
@@ -104,7 +107,7 @@ class _AddProductState extends State<AddProduct> {
                       child: OutlineButton(
                           borderSide: BorderSide(color: grey.withOpacity(0.5), width: 2.5),
                           onPressed: (){
-                           // _selectImage(ImagePicker.pickImage(source: ImageSource.gallery), 2);
+                            _selectImage(ImagePicker.pickImage(source: ImageSource.gallery), 2);
 
                           },
                           child: _displayChild2()
@@ -118,7 +121,7 @@ class _AddProductState extends State<AddProduct> {
                       child: OutlineButton(
                         borderSide: BorderSide(color: grey.withOpacity(0.5), width: 2.5),
                         onPressed: (){
-                          //_selectImage(ImagePicker.pickImage(source: ImageSource.gallery), 3);
+                          _selectImage(ImagePicker.pickImage(source: ImageSource.gallery), 3);
                         },
                         child: _displayChild3(),
                       ),
@@ -127,9 +130,25 @@ class _AddProductState extends State<AddProduct> {
                 ],
               ),
 
-              Padding(
+            /*  Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text('enter a product name with 10 characters at maximum',textAlign: TextAlign.center ,style: TextStyle(color: red, fontSize: 12),),
+              ),*/
+
+              Row(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(left: largeurPerCent(20, context),),
+                    child: Text('Category: ', style: TextStyle(color: red),),
+                  ),
+                  DropdownButton(items: categoriesDropDown, onChanged: changeSelectedCategory, value: _currentCategory,),
+
+                  Padding(
+                    padding: EdgeInsets.only(left: largeurPerCent(20, context), ),
+                    child: Text('Brand: ', style: TextStyle(color: red),),
+                  ),
+                  DropdownButton(items: brandsDropDown, onChanged: changeSelectedBrand, value: _currentBrand,),
+                ],
               ),
 
               Padding(
@@ -149,106 +168,72 @@ class _AddProductState extends State<AddProduct> {
                 ),
               ),
 
-//              select category
-              Row(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('Category: ', style: TextStyle(color: red),),
-                  ),
-                  DropdownButton(items: categoriesDropDown, onChanged: changeSelectedCategory, value: _currentCategory,),
-
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('Brand: ', style: TextStyle(color: red),),
-                  ),
-                  DropdownButton(items: brandsDropDown, onChanged: changeSelectedBrand, value: _currentBrand,),
-                ],
-              ),
-
-//
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: TextFormField(
-                  controller: quatityController,
-                  keyboardType: TextInputType.number,
+                  controller: productNameController,
                   decoration: InputDecoration(
-                    hintText: 'Quantity',
+                      hintText: 'Price'
                   ),
                   validator: (value){
                     if(value.isEmpty){
                       return 'You must enter the product name';
+                    }else if(value.length > 10){
+                      return 'Product name cant have more than 10 letters';
                     }
                   },
                 ),
               ),
 
-              Text('Available Sizes'),
+
+
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: TextFormField(
+                  controller: productNameController,
+                  decoration: InputDecoration(
+                      hintText: 'Size'
+                  ),
+                  validator: (value){
+                    if(value.isEmpty){
+                      return 'You must enter the product name';
+                    }else if(value.length > 10){
+                      return 'Product name cant have more than 10 letters';
+                    }
+                  },
+                ),
+              ),
+
+
+
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: _buildTextFieldDescription()
+              ),
+
+
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: TextFormField(
+                  controller: productNameController,
+                  decoration: InputDecoration(
+                      hintText: 'Star number'
+                  ),
+                  validator: (value){
+                    if(value.isEmpty){
+                      return 'You must enter the product name';
+                    }else if(value.length > 10){
+                      return 'Product name cant have more than 10 letters';
+                    }
+                  },
+                ),
+              ),
+//              select category
 
               Row(
                 children: <Widget>[
                   Checkbox(value: selectedSizes.contains('XS'), onChanged: (value) => changeSelectedSize('XS')),
-                  Text('XS'),
-
-                  Checkbox(value: selectedSizes.contains('S'), onChanged: (value) => changeSelectedSize('S')),
-                  Text('S'),
-
-                  Checkbox(value: selectedSizes.contains('M'), onChanged: (value) => changeSelectedSize('M')),
-                  Text('M'),
-
-                  Checkbox(value: selectedSizes.contains('L'), onChanged: (value) => changeSelectedSize('L')),
-                  Text('L'),
-
-                  Checkbox(value: selectedSizes.contains('XL'), onChanged: (value) => changeSelectedSize('XL')),
-                  Text('XL'),
-
-                  Checkbox(value: selectedSizes.contains('XXL'), onChanged: (value) => changeSelectedSize('XXL')),
-                  Text('XXL'),
-                ],
-              ),
-
-              Row(
-                children: <Widget>[
-                  Checkbox(value: selectedSizes.contains('28'), onChanged: (value) => changeSelectedSize('28')),
-                  Text('28'),
-
-                  Checkbox(value: selectedSizes.contains('30'), onChanged: (value) => changeSelectedSize('30')),
-                  Text('30'),
-
-                  Checkbox(value: selectedSizes.contains('32'), onChanged: (value) => changeSelectedSize('32')),
-                  Text('32'),
-
-                  Checkbox(value: selectedSizes.contains('34'), onChanged: (value) => changeSelectedSize('34')),
-                  Text('34'),
-
-
-                  Checkbox(value: selectedSizes.contains('36'), onChanged: (value) => changeSelectedSize('36')),
-                  Text('36'),
-
-                  Checkbox(value: selectedSizes.contains('38'), onChanged: (value) => changeSelectedSize('38')),
-                  Text('38'),
-                ],
-              ),
-
-              Row(
-                children: <Widget>[
-                  Checkbox(value: selectedSizes.contains('40'), onChanged: (value) => changeSelectedSize('40')),
-                  Text('40'),
-
-                  Checkbox(value: selectedSizes.contains('42'), onChanged: (value) => changeSelectedSize('42')),
-                  Text('42'),
-
-                  Checkbox(value: selectedSizes.contains('44'), onChanged: (value) => changeSelectedSize('44')),
-                  Text('44'),
-
-                  Checkbox(value: selectedSizes.contains('46'), onChanged: (value) => changeSelectedSize('46')),
-                  Text('46'),
-
-                  Checkbox(value: selectedSizes.contains('48'), onChanged: (value) => changeSelectedSize('48')),
-                  Text('48'),
-
-                  Checkbox(value: selectedSizes.contains('50'), onChanged: (value) => changeSelectedSize('50')),
-                  Text('50'),
+                  Text('Sur Mesure'),
                 ],
               ),
 
@@ -257,11 +242,25 @@ class _AddProductState extends State<AddProduct> {
                 textColor: white,
                 child: Text('add product'),
                 onPressed: (){
-                  //validateAndUpload();
+                  validateAndUpload();
                 },
               )
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTextFieldDescription() {
+    final maxLines = 5;
+
+    return Container(
+      height: maxLines * 24.0,
+      child: TextField(
+        maxLines: maxLines,
+        decoration: InputDecoration(
+          hintText: "Description",
         ),
       ),
     );
@@ -352,13 +351,13 @@ class _AddProductState extends State<AddProduct> {
     }
   }
 
- /* void validateAndUpload() {
+  void validateAndUpload() {
     if(_formKey.currentState.validate()){
       if(_image1 != null && _image2 != null && _image3 != null){
         if(selectedSizes.isNotEmpty){
           String imageUrl;
           final String picture = "${DateTime.now().millisecondsSinceEpoch.toString()}.jpg";
-//            StorageUploadTask task = storage.ref
+            //StorageUploadTask task = storage.ref;
         }else{
           Fluttertoast.showToast(msg: 'select atleast one size');
         }
@@ -366,5 +365,76 @@ class _AddProductState extends State<AddProduct> {
         Fluttertoast.showToast(msg: 'all the images must be provided');
       }
     }
-  }*/
+  }
 }
+
+
+/*Text('Available Sizes'),
+
+              Row(
+                children: <Widget>[
+                  Checkbox(value: selectedSizes.contains('XS'), onChanged: (value) => changeSelectedSize('XS')),
+                  Text('XS'),
+
+                  Checkbox(value: selectedSizes.contains('S'), onChanged: (value) => changeSelectedSize('S')),
+                  Text('S'),
+
+                  Checkbox(value: selectedSizes.contains('M'), onChanged: (value) => changeSelectedSize('M')),
+                  Text('M'),
+
+                  Checkbox(value: selectedSizes.contains('L'), onChanged: (value) => changeSelectedSize('L')),
+                  Text('L'),
+
+                  Checkbox(value: selectedSizes.contains('XL'), onChanged: (value) => changeSelectedSize('XL')),
+                  Text('XL'),
+
+                  Checkbox(value: selectedSizes.contains('XXL'), onChanged: (value) => changeSelectedSize('XXL')),
+                  Text('XXL'),
+                ],
+              ),
+
+              Row(
+                children: <Widget>[
+                  Checkbox(value: selectedSizes.contains('28'), onChanged: (value) => changeSelectedSize('28')),
+                  Text('28'),
+
+                  Checkbox(value: selectedSizes.contains('30'), onChanged: (value) => changeSelectedSize('30')),
+                  Text('30'),
+
+                  Checkbox(value: selectedSizes.contains('32'), onChanged: (value) => changeSelectedSize('32')),
+                  Text('32'),
+
+                  Checkbox(value: selectedSizes.contains('34'), onChanged: (value) => changeSelectedSize('34')),
+                  Text('34'),
+
+
+                  Checkbox(value: selectedSizes.contains('36'), onChanged: (value) => changeSelectedSize('36')),
+                  Text('36'),
+
+                  Checkbox(value: selectedSizes.contains('38'), onChanged: (value) => changeSelectedSize('38')),
+                  Text('38'),
+                ],
+              ),
+
+              Row(
+                children: <Widget>[
+                  Checkbox(value: selectedSizes.contains('40'), onChanged: (value) => changeSelectedSize('40')),
+                  Text('40'),
+
+                  Checkbox(value: selectedSizes.contains('42'), onChanged: (value) => changeSelectedSize('42')),
+                  Text('42'),
+
+                  Checkbox(value: selectedSizes.contains('44'), onChanged: (value) => changeSelectedSize('44')),
+                  Text('44'),
+
+                  Checkbox(value: selectedSizes.contains('46'), onChanged: (value) => changeSelectedSize('46')),
+                  Text('46'),
+
+                  Checkbox(value: selectedSizes.contains('48'), onChanged: (value) => changeSelectedSize('48')),
+                  Text('48'),
+
+                  Checkbox(value: selectedSizes.contains('50'), onChanged: (value) => changeSelectedSize('50')),
+                  Text('50'),
+                ],
+              ),
+*/
