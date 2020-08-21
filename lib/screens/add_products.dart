@@ -94,7 +94,7 @@ class _AddProductState extends State<AddProduct> {
                       child: OutlineButton(
                           borderSide: BorderSide(color: grey.withOpacity(0.5), width: 2.5),
                           onPressed: (){
-                            _selectImage(ImagePicker.pickImage(source: ImageSource.gallery), 1);
+                            _selectImage(ImagePicker.pickImage(source: ImageSource.camera), 1);
                           },
                           child: _displayChild1()
                       ),
@@ -107,7 +107,7 @@ class _AddProductState extends State<AddProduct> {
                       child: OutlineButton(
                           borderSide: BorderSide(color: grey.withOpacity(0.5), width: 2.5),
                           onPressed: (){
-                            _selectImage(ImagePicker.pickImage(source: ImageSource.gallery), 2);
+                            _selectImage(ImagePicker.pickImage(source: ImageSource.camera), 2);
 
                           },
                           child: _displayChild2()
@@ -121,7 +121,7 @@ class _AddProductState extends State<AddProduct> {
                       child: OutlineButton(
                         borderSide: BorderSide(color: grey.withOpacity(0.5), width: 2.5),
                         onPressed: (){
-                          _selectImage(ImagePicker.pickImage(source: ImageSource.gallery), 3);
+                          _selectImage(ImagePicker.pickImage(source: ImageSource.camera), 3);
                         },
                         child: _displayChild3(),
                       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:premierchoixadmin/screens/admin.dart';
+import 'package:premierchoixadmin/test.dart';
 
 import 'components/hexadecimal.dart';
 
@@ -21,9 +22,11 @@ class MyApp extends StatelessWidget {
         accentColor: HexColor("#001C36"),
         colorScheme: ColorScheme.light(primary: HexColor("#001C36")),
       ),
-      initialRoute: Admin.id,
+      initialRoute: Test.id,
       routes: {
         Admin.id: (context) => Admin(),
+        Test.id: (context) => Test(),
+
       },
     );
   }
