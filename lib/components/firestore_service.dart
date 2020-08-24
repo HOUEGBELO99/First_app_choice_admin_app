@@ -22,6 +22,10 @@ class FirestoreService {
     return _db.collection("Utilisateurs").document(idDocument).setData(utilisateur.toMap());
   }
 
+  Future<void> addProducts(Produit produit, String categorie, String sousCategorie) {
+    return _db.collection(categorie).document(sousCategorie).collection("Produits").add(produit.toMap());
+  }
+
   Future<void> addProduitFavorisUser(ProduitsFavorisUser produit, String document){
     return _db.collection("Utilisateurs").document(document).collection("ProduitsFavoirsUser").add(produit.toMap());
   }
