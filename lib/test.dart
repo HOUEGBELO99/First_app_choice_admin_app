@@ -35,14 +35,14 @@ class _TestState extends State<Test> {
             _image == null
                 ? RaisedButton(
               child: Text('Choose File'),
-              onPressed: getImage,
+              onPressed: chooseFile,
               color: Colors.cyan,
             )
                 : Container(),
             _image != null
                 ? RaisedButton(
-              child: Text('Upload File'),
-              onPressed: uploadFile,
+              child: Text('ChargerImage'),
+              onPressed: getImage,
               color: Colors.cyan,
             )
                 : Container(),
@@ -54,7 +54,9 @@ class _TestState extends State<Test> {
               }
             )
                 : Container(),
-            Text('Uploaded Image'),
+            RaisedButton(
+                onPressed: ()=> uploadFile(),
+                child: Text('Uploaded Image')),
             _uploadedFileURL != null
                 ? Image.network(
               _uploadedFileURL,
@@ -67,13 +69,13 @@ class _TestState extends State<Test> {
     );
   }
 
- /* Future chooseFile() async {
+  Future chooseFile() async {
     await ImagePicker.pickImage(source: ImageSource.camera).then((image) {
       setState(() {
         _image = image;
       });
     });
-  }*/
+  }
 
   final picker = ImagePicker();
 

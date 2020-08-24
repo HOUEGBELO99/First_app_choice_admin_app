@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:premierchoixadmin/screens/order.dart';
 
 import 'add_products.dart';
 /*import 'package:fluttertoast/fluttertoast.dart';
@@ -227,9 +228,9 @@ class _AdminState extends State<Admin> {
             Divider(),
             ListTile(
               leading: Icon(Icons.library_books),
-              title: Text("brand list"),
+              title: Text("Order list"),
               onTap: () {
-
+                Navigator.push(context, MaterialPageRoute(builder: (_) => OrderList()));
               },
             ),
             Divider(),
