@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:premierchoixadmin/categoryProduit.dart';
+import 'package:premierchoixadmin/components/calcul.dart';
 import 'package:premierchoixadmin/screens/order.dart';
 
 import 'add_products.dart';
@@ -94,63 +96,176 @@ class _AdminState extends State<Admin> {
                   Padding(
                     padding: const EdgeInsets.all(18.0),
                     child: Card(
-                      child: ListTile(
-                          title: FlatButton.icon(
-                              onPressed: null,
-                              icon: Icon(Icons.people_outline),
-                              label: Text("Users")),
-                          subtitle: Text(
-                            '7',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: active, fontSize: 60.0),
-                          )),
+                      child: Column(
+                        children: [
+                          ListTile(
+                              title: FlatButton.icon(
+                                  onPressed: null,
+                                  icon: Icon(Icons.people_outline),
+                                  label: Text("Utlisateurs")),
+                              subtitle: Text(
+                                '24',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: active, fontSize: 40.0),
+                              ),
+                          ),
+                          Row(
+                            children: [
+                              Column(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(left: longueurPerCent(5, context),top: longueurPerCent(10, context)),
+                                      child: Text("Hommes",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(color: Colors.blue, fontSize: 15.0),),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: longueurPerCent(10, context)),
+                                      child: Text("12",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(color: active, fontSize: 15.0),),
+                                    )
+
+                                  ]),
+                              Column(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(left: longueurPerCent(30, context),top: longueurPerCent(10, context)),
+                                      child: Text("Femmes",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(color: Colors.pink, fontSize: 15.0),),
+                                    ),
+                                    Center(
+                                      child: Padding(
+                                        padding: EdgeInsets.only(top: longueurPerCent(10, context),left: longueurPerCent(20, context)),
+                                        child: Text("12",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(color: active, fontSize: 15.0),),
+                                      ),
+                                    )
+
+                                  ]),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(18.0),
                     child: Card(
-                      child: ListTile(
-                          title: FlatButton.icon(
-                              onPressed: null,
-                              icon: Icon(Icons.category),
-                              label: Text("Categories")),
-                          subtitle: Text(
-                            '23',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: active, fontSize: 60.0),
-                          )),
+                      child: Column(
+                        children: [
+                              ListTile(
+                              title: FlatButton.icon(
+                                  onPressed: null,
+                                  icon: Icon(Icons.category),
+                                  label: Text("Catégories")),
+                              subtitle: Text(
+                                '9',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: active, fontSize: 40.0),
+                              )),
+                          Row(
+                            children: [
+                              Column(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(left: longueurPerCent(5, context),top: longueurPerCent(10, context)),
+                                      child: Text("Hommes",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(color: Colors.blue, fontSize: 15.0),),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: longueurPerCent(10, context)),
+                                      child: Text("6",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(color: active, fontSize: 15.0),),
+                                    )
+
+                                  ]),
+                              Column(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(left: longueurPerCent(30, context),top: longueurPerCent(10, context)),
+                                      child: Text("Femmes",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(color: Colors.pink, fontSize: 15.0),),
+                                    ),
+                                    Center(
+                                      child: Padding(
+                                        padding: EdgeInsets.only(top: longueurPerCent(10, context),left: longueurPerCent(20, context)),
+                                        child: Text("6",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(color: active, fontSize: 15.0),),
+                                      ),
+                                    )
+
+                                  ]),
+                            ],
+                          )
+                            ],
+                      ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(22.0),
                     child: Card(
-                      child: ListTile(
-                          title: FlatButton.icon(
-                              onPressed: null,
-                              icon: Icon(Icons.track_changes),
-                              label: Text("Producs")),
-                          subtitle: Text(
-                            '120',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: active, fontSize: 60.0),
-                          )),
+                      child: Column(
+                        children: [
+                              ListTile(
+                              title: FlatButton.icon(
+                                  onPressed: null,
+                                  icon: Icon(Icons.track_changes),
+                                  label: Text("Restants"),),
+                              subtitle: Text(
+                                '120/200',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: active, fontSize: 35.0),
+                              )),
+                          Row(
+                            children: [
+                              Column(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(left: longueurPerCent(5, context),top: longueurPerCent(10, context)),
+                                      child: Text("Hommes",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(color: Colors.blue, fontSize: 15.0),),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: longueurPerCent(10, context)),
+                                      child: Text("60/100",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(color: active, fontSize: 15.0),),
+                                    )
+
+                                  ]),
+                              Column(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(left: longueurPerCent(30, context),top: longueurPerCent(10, context)),
+                                      child: Text("Femmes",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(color: Colors.pink, fontSize: 15.0),),
+                                    ),
+                                    Center(
+                                      child: Padding(
+                                        padding: EdgeInsets.only(top: longueurPerCent(10, context),left: longueurPerCent(20, context)),
+                                        child: Text("60/100",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(color: active, fontSize: 15.0),),
+                                      ),
+                                    )
+
+                                  ]),
+                            ],
+                          )
+                            ],
+                      ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(22.0),
-                    child: Card(
-                      child: ListTile(
-                          title: FlatButton.icon(
-                              onPressed: null,
-                              icon: Icon(Icons.tag_faces),
-                              label: Text("Sold")),
-                          subtitle: Text(
-                            '13',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: active, fontSize: 60.0),
-                          )),
-                    ),
-                  ),
+
                   Padding(
                     padding: const EdgeInsets.all(22.0),
                     child: Card(
@@ -158,26 +273,11 @@ class _AdminState extends State<Admin> {
                           title: FlatButton.icon(
                               onPressed: null,
                               icon: Icon(Icons.shopping_cart),
-                              label: Text("Orders")),
+                              label: Text("Commandes")),
                           subtitle: Text(
-                            '5',
+                            '5/10',
                             textAlign: TextAlign.center,
-                            style: TextStyle(color: active, fontSize: 60.0),
-                          )),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(22.0),
-                    child: Card(
-                      child: ListTile(
-                          title: FlatButton.icon(
-                              onPressed: null,
-                              icon: Icon(Icons.close),
-                              label: Text("Return")),
-                          subtitle: Text(
-                            '0',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: active, fontSize: 60.0),
+                            style: TextStyle(color: active, fontSize: 50.0),
                           )),
                     ),
                   ),
@@ -192,7 +292,7 @@ class _AdminState extends State<Admin> {
           children: <Widget>[
             ListTile(
               leading: Icon(Icons.add),
-              title: Text("Add product"),
+              title: Text("Ajouter un produits"),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (_) => AddProduct()));
               },
@@ -200,13 +300,15 @@ class _AdminState extends State<Admin> {
             Divider(),
             ListTile(
               leading: Icon(Icons.change_history),
-              title: Text("Products list"),
-              onTap: () {},
+              title: Text("Liste des produits"),
+              onTap: () {
+                Navigator.pushNamed(context, categorieProduits.id);
+              },
             ),
             Divider(),
             ListTile(
               leading: Icon(Icons.add_circle),
-              title: Text("Add category"),
+              title: Text("Ajouter une catégorie"),
               onTap: () {
                // _categoryAlert();
               },
@@ -214,21 +316,15 @@ class _AdminState extends State<Admin> {
             Divider(),
             ListTile(
               leading: Icon(Icons.category),
-              title: Text("Category list"),
-              onTap: () {},
-            ),
-            Divider(),
-            ListTile(
-              leading: Icon(Icons.add_circle_outline),
-              title: Text("Add brand"),
+              title: Text("Liste des catégories"),
               onTap: () {
-                //_brandAlert();
+                Navigator.pushNamed(context, categorieProduits.id);
               },
             ),
             Divider(),
             ListTile(
               leading: Icon(Icons.library_books),
-              title: Text("Order list"),
+              title: Text("Liste des commandes"),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (_) => OrderList()));
               },
